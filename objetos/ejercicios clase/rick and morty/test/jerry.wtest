@@ -1,0 +1,13 @@
+import src.jerry.jerry
+import src.rick.Rick
+import src.noPuedoIrmeDeAventurasException.NoPuedoIrmeDeAventurasException
+
+describe "jerry" {
+
+  test "jerry no puede irse de aventuras" {
+    assert.throwsExceptionLike(
+      new NoPuedoIrmeDeAventurasException(message = "¡No puedo irme de aventuras!"),
+      { jerry.irseDeAventurasCon(new Rick(nivelDeDemencia = 10, acompaniante = jerry)) }
+    )
+  }
+}

@@ -1,0 +1,41 @@
+@startuml
+class Rick {
+  acompaniante
+  nivelDeDemencia
+
+  sumarNivelDeDemencia(unaCantidad)
+  irDeAventuras()
+  noPuedoIrDeAventuras()
+}
+
+class Morty {
+  saludMental
+
+  irseDeAventurasCon(unRick)
+}
+
+class Summer {
+  irseDeAventurasCon(unRick)
+}
+
+class Beth {
+  nivelDeAfectoPaterno
+
+  irseDeAventurasCon(unRick)
+}
+
+object jerry {
+  --
+  irseDeAventurasCon(unRick)
+}
+
+interface Acompaniante {
+  irseDeAventurasCon(unRick)
+}
+
+Morty .u.|> Acompaniante
+Summer -u-|> Beth
+Beth .u.|> Acompaniante
+jerry .u.|> Acompaniante
+Rick -r-> Acompaniante
+@enduml
