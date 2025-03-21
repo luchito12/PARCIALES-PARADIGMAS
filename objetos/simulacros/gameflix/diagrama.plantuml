@@ -1,0 +1,89 @@
+H@startuml
+rectangle Herencia #lightblue;line.dotted {
+  abstract class Juego {
+    nombre
+    precio
+    categoria
+
+    perteneceACategoria(unaCategoria)
+    seLlama(unNombre)
+    {abstract} afectarA(unCliente, unasHoras)
+  }
+
+  class JuegoViolento extends Juego {
+    afectarA(unCliente, unasHoras)
+  }
+
+  class Moba extends Juego {
+    afectarA(unCliente, unasHoras)
+  }
+
+  class JuegoDeTerror extends Juego {
+    afectarA(unCliente, unasHoras)
+  }
+
+  class JuegoEstrategico extends Juego {
+    afectarA(unCliente, unasHoras)
+  }
+}
+
+rectangle Composicion #lightgreen;line.dotted {
+  class Cliente {
+    suscripcion
+    pagarSuscripcion()
+    pagar(unaCantidad)
+    aumentarHumor(unaCantidad)
+    bajarHumor(unaCantidad)
+  }
+
+  object premium {
+  precio()
+  puedeJugar(unJuego)
+}
+
+object base {
+  precio()
+  puedeJugar(unJuego)
+}
+
+class SuscripcionPorCategoria implements Suscripcion {
+  categoria
+
+  precio()
+  puedeJugar(unJuego)
+}
+
+interface Suscripcion {
+  precio()
+  puedeJugar(unJuego)
+}
+}
+
+object gameflix {
+  juegos
+  clientes
+  --
+  juegosDeCategoria(unaCategoria)
+  juegoQueSeLlama(unNombre)
+  juegoRecomendado()
+  cobrarSuscripciones()
+}
+
+gameflix --> "*" Cliente : clientes
+gameflix --> "*" Juego : juegos
+Cliente --> Suscripcion
+premium .u.|> Suscripcion
+base .u.|> Suscripcion
+
+' Herencia
+' - Estática
+' - Es más simple
+' - Permite implementar un sólo tipo
+
+'vs.
+
+' Composicion
+' - Dinámica
+' - Es más compleja
+' - Permite implementar múltiples tipos
+@enduml

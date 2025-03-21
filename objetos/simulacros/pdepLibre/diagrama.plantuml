@@ -1,0 +1,95 @@
+@startuml
+abstract class Producto{
+    nombre 
+    precioBase
+
+
+precio()
+precioFinal()
+nombreEnOferta()
+}
+
+class Mueble extends Producto{
+    precioFinal()
+}
+
+
+class Indumentaria extends Producto{
+    esDeTemporadaActual
+    precioFinal()
+}
+
+class Ganga extends Producto{
+    precioFinal()
+    nombreEnOferta()
+}
+
+
+object pdpLibre{
+    productos
+    usuarios
+    --
+    penalizarMorosos()
+    eliminarCuponesDeUsuarios()
+    nombresDeProductosDeOferta()
+    actualizarNivelDeUsuario()
+}
+
+
+class Usuario {
+    dineroDisponible
+    puntos
+    nivel 
+    nombre 
+    carrito 
+    cupones 
+
+    agregarAlCarrito(unProducto)
+    comprarCarrito()
+    cuponDisponible()
+    precioCarrito()
+    sumarPuntos(unPrecio)
+    esMoroso()
+    penalizar()
+    eliminarCuponesUsados()
+    actualizarNivel()
+    nivelCorrespondiente()
+
+
+}
+
+class Cupon {
+    fueUsado
+    descuento 
+
+    descuento()
+    estaDisponible()
+    precioConElDescuentoAplicado(unPrecio)
+    usar()
+}
+
+class NivelLimitado{
+    limite 
+    puedeAgregarAlCarrito(unaCantidad)
+}
+
+object oro {
+ puedeAgregarAlCarrito(unaCantidad)
+
+}
+
+interface Nivel {
+    puedeAgregarAlCarrito(unaCantidad)
+
+}
+
+
+Usuario --> "*" Producto : carrito 
+Usuario --> "*" Cupon : cupones
+pdpLibre --> "*" Producto
+pdpLibre --> "*" Usuario : usuarios
+Usuario --> Nivel
+oro .u.|> Nivel
+NivelLimitado .u.|> Nivel
+
+@enduml
