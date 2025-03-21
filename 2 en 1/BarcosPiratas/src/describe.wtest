@@ -1,0 +1,22 @@
+
+import barcosPiratas.*
+describe "barco Pirata" {
+	
+	const unPirata = new Pirata(edad = 20, temeMorir = false, items = ["brujula", "botellaGrogXD"], dinero = 1000)
+	
+	const unBarcoPirata =  new BarcoPirata(mision = busquedaDelTesoro , tripulacion = [unPirata] )
+	const otroBarcoPirata = new BarcoPirata(mision = convertirseEnLeyenda)
+	
+	
+
+	test "piratas Utiles para la mision busquedaDelTesoro" {
+		assert.that(unBarcoPirata.piratasUtiles().contains(unPirata))		
+		assert.that(unBarcoPirata.piratasUtiles().size() == 1)
+	}
+	
+	test "piratas Utilies para la mision saqueo" {
+		unBarcoPirata.mision(new Saqueo(cantMonedas = 4000, objetivo = otroBarcoPirata))
+		assert.that(unBarcoPirata.piratasUtiles().contains(unPirata))
+		assert.that(unBarcoPirata.piratasUtiles().size() == 1)			
+	}
+}

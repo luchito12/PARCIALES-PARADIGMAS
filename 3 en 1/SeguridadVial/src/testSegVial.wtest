@@ -1,0 +1,39 @@
+import segVial.*
+
+describe "group of tests" {
+	
+	const fiatPalio = new Auto(plusVelocidad = 10,tieneRuedaAux= true )
+	const pedro = new Conductor(tieneLicencia = true, vehiculo = fiatPalio)
+	const harly = new Moto(velocidad = 150, cantEspejos = 2)
+	
+	test "conductor es seguro con auto seguro" {
+		assert.that(pedro.esSeguro())
+	}
+	
+	test "Conductor no es seguro, con auto no seguro" {
+		fiatPalio.plusVelocidad(41)
+		assert.notThat(pedro.esSeguro())
+	}
+	
+	test "Conductor no seguro, con auto seguro" {
+		pedro.tieneLicencia(false)
+		assert.notThat(pedro.esSeguro())
+	}
+	
+	test "conductor es seguro con moto seguro" {
+		pedro.vehiculo(harly)
+		assert.that(pedro.esSeguro())
+	} 
+	
+	test "conductor no seguro con moto segura" {
+		pedro.vehiculo(harly)
+		pedro.tieneLicencia(false)
+		assert.notThat(pedro.esSeguro())
+	}
+	
+	test "conductor no seguro, con moto no segura" {
+		harly.cantEspejos(1)
+		pedro.vehiculo(harly)
+		assert.notThat(pedro.esSeguro())
+	}
+}

@@ -1,0 +1,29 @@
+import restaurante.*
+describe "tests restaurante" {
+	
+	const mario = new Cliente(tipoCliente = comun, salario = 10000)
+	
+	const comedido = new Comedido(montoMaximo= 5000)
+	
+	test "test calcular total cliente comun" {
+
+		assert.equals(1100, mario.montoTotalPara(1000))
+
+	}
+	
+	test "test calcular total cliente comedido" {
+		mario.tipoCliente(comedido)
+		assert.equals(1200, mario.montoTotalPara(1000))
+	}
+	
+	test "test calcular total cliente amarrete" {
+		mario.tipoCliente(amarrete)
+		assert.equals(1000, mario.montoTotalPara(1000))
+	}
+	
+	test "test calcular total cliente segun salario" {
+		mario.tipoCliente(segunSalario)
+		assert.equals(1100, mario.montoTotalPara(1000))
+	}
+	
+}

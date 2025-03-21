@@ -1,0 +1,14 @@
+import game.*
+describe "Tests de Jugadores" {
+	
+	var rekkles = new Jugador(antiguedad = 9, competenciasInternacionales = 14)
+	var josedeodo = new Jugador(antiguedad = 4, competenciasInternacionales = 1)
+
+	test "jugador con antiguedad >3 es Titular" {
+		assert.that(rekkles.esTitular())
+	}
+	
+	test "puedeJugar rekkles" {
+		assert.that(rekkles.puedeJugar())
+	}
+}
