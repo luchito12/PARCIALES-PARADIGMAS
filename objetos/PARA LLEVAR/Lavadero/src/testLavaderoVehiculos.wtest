@@ -1,0 +1,53 @@
+import lavaderoVehiculo.*
+
+describe "test lavadero de vehiculo" {
+	
+	
+	const unaBandada = new Bandada(formacion = new FormacionV())
+	const fitito = new Vehiculo()
+	
+	const wollokLav = new LavArtesanal(costoMinuto = 10, cantEmpleados = 5)
+	
+	const lluvia = new LluviaCeniza(cantMilimetros = 120)
+	
+	const palomaGrandota = new Paloma(peso = 200)
+	
+	method initialize() {
+		unaBandada.agregarAve(new Gaviota(cantPescados = 3))
+		unaBandada.agregarAve(new Paloma(peso = 100))
+		unaBandada.agregarAve(new Ave(cantEnsucia = 10))
+		caba.agregarVehiculo(fitito)
+	}
+
+	test "Bandada pasar por auto" {
+
+		unaBandada.ensuciarA(fitito)
+		assert.equals(49,fitito.nivelSuciedad())
+	}
+	
+	test "llover ceniza volcanica"
+	{
+		lluvia.caerSobre(caba)
+		assert.equals(120, fitito.nivelSuciedad());
+	}
+	
+	test "paloma grandota pasar por vehiculo" {
+		palomaGrandota.ensuciar(fitito)
+		assert.equals(60, fitito.nivelSuciedad())
+	}
+	
+	test "llevar auto a wollokLav " {
+		
+		fitito.incrementarNivelSuciedad(100)
+		assert.equals(1000, wollokLav.lavar(fitito));
+	}
+	
+	test "bandaba cambiar formacion a W  y pasar por el auto" {
+		unaBandada.formacion(formacionW)
+		unaBandada.ensuciarA(fitito)
+		assert.equals(89, fitito.nivelSuciedad())
+	}
+	
+	
+	
+}
