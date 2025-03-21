@@ -1,0 +1,10 @@
+{
+  "name": "navidad",
+  "version": "1.0.0",
+  "wollokVersion": "4.0.0",
+  "author": "victo",
+  "license": "ISC",
+  "dependencies": {
+    "navidad": "file:"
+  }
+}

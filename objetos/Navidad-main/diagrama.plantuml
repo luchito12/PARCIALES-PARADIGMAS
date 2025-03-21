@@ -1,0 +1,78 @@
+@startuml
+abstract class Arbol {
+    regalos
+    tarjetas
+    adornos
+    umbralDePrecio
+    --
+    {abstract}capacidad()
+
+    tieneEspacioParaRegalo()
+    agregar(unRegalo)
+    beneficiarios() 
+    destinatariosDe(unosPresentes)
+    costoTotal()
+    importanciaDeAdornos()
+    esPortentoso()
+    regalosParaPersonasMuyQueridas()
+    hayTarjetasCaras()
+}
+class Artificial extends Arbol{
+    cantVaras
+    --
+    capacidad()
+}
+
+class Natural extends Arbol{
+    vejez
+    tamanioTronco
+    --
+    capacidad()
+}
+class Tarjeta{
+    destinatario
+    valorAdjunto
+    --
+    precio()
+    destinatario()
+    esCara()
+}
+class Regalo{
+    precio
+    destinatario
+    --
+    destinatario()
+    precio()
+    esDelTipoTeQuierenMucho(umbral)
+}
+
+Arbol -u->"*" Regalo
+Arbol -u->"*" Tarjeta
+Arbol ->"*" Adorno
+
+class Adorno{
+    peso
+    coeficienteDeSuperioridad
+    --
+    peso()
+    importancia()
+}
+class FiguraElaborada extends Adorno{
+    volumen
+    --
+    importancia() 
+}
+class Guirnalda extends Adorno{
+    anioDeCompra
+    --
+    peso()
+    aniosDeUso() 
+    importancia()
+}
+class Luz extends Adorno{
+    cantLamparitas
+    --
+    luminosidad()
+    importancia() 
+}
+@enduml
